@@ -21,7 +21,7 @@ logging.basicConfig(
 class WebDriver:
     def __init__(self):
         self._driver: webdriver.Chrome
-        self._implicit_wait_time = 20
+        self._implicit_wait_time = 30
 
     def __enter__(self) -> webdriver.Chrome:
         logging.info("Open browser")
@@ -40,7 +40,7 @@ class WebDriver:
 
 class BerlinBot:
     def __init__(self):
-        self.wait_time = 15
+        self.wait_time = 30
         self._sound_file = os.path.join(os.getcwd(), "alarm.wav")
         self._error_message = """Für die gewählte Dienstleistung sind aktuell keine Termine frei! Bitte"""
 
@@ -57,7 +57,7 @@ class BerlinBot:
         driver.find_element(By.XPATH, '//*[@id="xi-div-1"]/div[4]/label[2]/p').click()
         time.sleep(1)
         driver.find_element(By.ID, 'applicationForm:managedForm:proceed').click()
-        time.sleep(5)
+        time.sleep(10)
 
     @staticmethod
     def enter_form(driver: webdriver.Chrome):
@@ -78,19 +78,19 @@ class BerlinBot:
 
         # apply for residence title
         driver.find_element(By.XPATH, '//*[@id="xi-div-30"]/div[1]/label/p').click()
-        time.sleep(2)
+        time.sleep(5)
 
         # click on family
         driver.find_element(By.XPATH, '//*[@id="inner-465-0-1"]/div/div[5]/label/p').click()
-        time.sleep(2)
+        time.sleep(5)
 
         # rp for spouse
         driver.find_element(By.XPATH, '//*[@id="inner-465-0-1"]/div/div[6]/div/div[4]/label').click()
-        time.sleep(4)
+        time.sleep(5)
 
         # submit form
         driver.find_element(By.ID, 'applicationForm:managedForm:proceed').click()
-        time.sleep(10)
+        time.sleep(15)
     
     def _success(self):
         logging.info("!!!SUCCESS - do not close the window!!!!")
